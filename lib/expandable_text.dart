@@ -156,7 +156,7 @@ class ExpandableTextState extends State<ExpandableText>
       children: [
         if (!_expanded)
           TextSpan(
-            text:  textOverflowSymbols ??='\u2026 ',
+              text: widget.textOverflowSymbols ??= '\u2026 ',
             style: widget.linkEllipsis ? linkTextStyle : effectiveTextStyle,
             recognizer: widget.linkEllipsis ? _linkTapGestureRecognizer : null,
           ),
