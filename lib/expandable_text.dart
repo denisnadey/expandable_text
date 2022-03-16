@@ -14,6 +14,7 @@ class ExpandableText extends StatefulWidget {
     this.text, {
     Key? key,
     required this.expandText,
+        this.textOverflowSymbols,
     this.collapseText,
     this.expanded = false,
     this.onExpandedChanged,
@@ -45,6 +46,7 @@ class ExpandableText extends StatefulWidget {
 
   final String text;
   final String expandText;
+  final String? textOverflowSymbols;
   final String? collapseText;
   final bool expanded;
   final ValueChanged<bool>? onExpandedChanged;
@@ -154,7 +156,7 @@ class ExpandableTextState extends State<ExpandableText>
       children: [
         if (!_expanded)
           TextSpan(
-            text: '\u2026 ',
+            text:  textOverflowSymbols ??='\u2026 ',
             style: widget.linkEllipsis ? linkTextStyle : effectiveTextStyle,
             recognizer: widget.linkEllipsis ? _linkTapGestureRecognizer : null,
           ),
