@@ -14,7 +14,7 @@ class ExpandableText extends StatefulWidget {
     this.text, {
     Key? key,
     required this.expandText,
-        this.textOverflowSymbols,
+    this.textOverflowSymbols,
     this.collapseText,
     this.expanded = false,
     this.onExpandedChanged,
@@ -41,13 +41,19 @@ class ExpandableText extends StatefulWidget {
     this.animationDuration,
     this.animationCurve,
     this.semanticsLabel,
+    // this.expandWidget,
+    // this.collapseWidget,
   })  : assert(maxLines > 0),
         super(key: key);
 
   final String text;
   final String expandText;
-  final String? textOverflowSymbols;
   final String? collapseText;
+
+//   final Widget? expandWidget;
+//   final Widget? collapseWidget;
+
+  final String? textOverflowSymbols;
   final bool expanded;
   final ValueChanged<bool>? onExpandedChanged;
   final Color? linkColor;
@@ -156,7 +162,7 @@ class ExpandableTextState extends State<ExpandableText>
       children: [
         if (!_expanded)
           TextSpan(
-             text: widget.textOverflowSymbols ?? '\u2026 ',
+            text: widget.textOverflowSymbols ?? '\u2026 ',
             style: widget.linkEllipsis ? linkTextStyle : effectiveTextStyle,
             recognizer: widget.linkEllipsis ? _linkTapGestureRecognizer : null,
           ),
@@ -173,6 +179,10 @@ class ExpandableTextState extends State<ExpandableText>
                 style: linkTextStyle,
                 recognizer: _linkTapGestureRecognizer,
               ),
+              //   if (!_expanded && widget.collapseWidget != null)
+              //     WidgetSpan(child: widget.collapseWidget!),
+              //   if (_expanded && widget.expandWidget != null)
+              //     WidgetSpan(child: widget.expandWidget!),
             ],
           ),
       ],
